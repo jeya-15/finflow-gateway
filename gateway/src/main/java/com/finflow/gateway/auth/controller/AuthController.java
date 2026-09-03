@@ -1,5 +1,7 @@
 package com.finflow.gateway.auth.controller;
 
+import com.finflow.gateway.auth.dto.LoginRequest;
+import com.finflow.gateway.auth.dto.LoginResponse;
 import com.finflow.gateway.auth.dto.RegisterRequest;
 import com.finflow.gateway.auth.dto.RegisterResponse;
 import com.finflow.gateway.auth.service.AuthService;
@@ -25,5 +27,11 @@ public class AuthController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request){
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
