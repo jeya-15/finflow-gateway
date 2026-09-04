@@ -38,5 +38,8 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-
+    @GetMapping("/get")
+    public String test(){
+        return "works";
+    }
 }
