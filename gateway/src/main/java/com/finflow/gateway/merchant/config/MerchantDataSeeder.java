@@ -25,42 +25,49 @@ public class MerchantDataSeeder implements CommandLineRunner {
 
         createMerchant(
                 "freshbite@finflow.com",
+                "Sourav",
                 "FreshBite",
                 BusinessType.FOOD
         );
 
         createMerchant(
                 "urbanwear@finflow.com",
+                "Shyam",
                 "UrbanWear",
                 BusinessType.CLOTHING
         );
 
         createMerchant(
                 "techzone@finflow.com",
+                "Jai",
                 "TechZone",
                 BusinessType.ELECTRONICS
         );
 
         createMerchant(
                 "homenest@finflow.com",
+                "Ajinesh",
                 "HomeNest",
                 BusinessType.HOME_APPLIANCES
         );
 
         createMerchant(
                 "bookworld@finflow.com",
+                "Muthu",
                 "BookWorld",
                 BusinessType.BOOKS
         );
 
         createMerchant(
                 "fitgear@finflow.com",
+                "Srivardhu",
                 "FitGear",
                 BusinessType.SPORTS
         );
 
         createMerchant(
                 "beautyhub@finflow.com",
+                "Maaran",
                 "BeautyHub",
                 BusinessType.BEAUTY
         );
@@ -68,6 +75,7 @@ public class MerchantDataSeeder implements CommandLineRunner {
 
     private void createMerchant(
             String email,
+            String fullName,
             String businessName,
             BusinessType businessType
     ) {
@@ -78,6 +86,7 @@ public class MerchantDataSeeder implements CommandLineRunner {
 
         User user = User.builder()
                 .email(email)
+                .fullName(fullName)
                 .passwordHash(passwordEncoder.encode("merchant123"))
                 .role(Role.MERCHANT)
                 .enabled(true)

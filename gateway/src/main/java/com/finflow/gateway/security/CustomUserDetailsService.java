@@ -3,15 +3,12 @@ package com.finflow.gateway.security;
 import com.finflow.gateway.user.entity.User;
 import com.finflow.gateway.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService
+        implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -26,18 +23,18 @@ public class CustomUserDetailsService implements UserDetailsService {
                         )
                 );
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPasswordHash(),
-                user.isEnabled(),
-                true,
-                true,
-                true,
-                List.of(
-                        new SimpleGrantedAuthority(
-                                "ROLE_" + user.getRole().name()
+        return new CustomUserDetails(user);
+    }
+
+    public UserDetails loadUserById(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(
+                                "User not found"
                         )
-                )
-        );
+                );
+
+        return new CustomUserDetails(user);
     }
 }
